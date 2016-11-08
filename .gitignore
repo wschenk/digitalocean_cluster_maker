@@ -1,3 +1,4 @@
 bin/
 token
 tmp
+ca.csr

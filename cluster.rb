@@ -1,10 +1,10 @@
-#!/usr/bin/env ruby -wKU
+#!/usr/bin/env ruby -KU
 
 require 'JSON'
 
 class Cluster
   def initialize( count = 3 )
-    @count = count
+    @count = count.to_i
     get_binaries
   end
 
@@ -90,9 +90,10 @@ class Cluster
       end
 
       puts
-      puts "Pausing for 20 seconds"
-      sleep 20
       reload_droploads
+      system( "open https://cloud.digitalocean.com/droplets")
+      puts "Now wait until the machine is up before running start again"
+      exit
     end
   end
 
@@ -144,11 +145,13 @@ class Cluster
   def get_binaries
     system( "mkdir -p bin")
     unless File.exist? './bin/cfssl'
+      puts "Downloading cfssl"
       system "curl -s -L -o ./bin/cfssl https://pkg.cfssl.org/R1.1/cfssl_darwin-amd64"
       system "chmod +x ./bin/cfssl"
     end
 
     unless File.exist? './bin/cfssljson'
+      puts "Download cfssljson"
       system "curl -s -L -o ./bin/cfssljson https://pkg.cfssl.org/R1.1/cfssljson_darwin-amd64"
       system "chmod +x ./bin/cfssljson"
     end
@@ -161,7 +164,7 @@ class Cluster
   end
 end
 
-c = Cluster.new
+c = Cluster.new ENV['CLUSTER_SIZE']
 
 case ARGV[0]
 when 'restart'

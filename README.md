@@ -11,18 +11,30 @@ This script assumes that digitialocean is a playground, and specifically `shutdo
 
 ## Usage
 
-1. Get an account on digitial ocean
+1. Get an account on digital ocean
 2. Get an DO api token here: https://cloud.digitalocean.com/settings/api/tokens
-3. export TOKEN=thattokenyoujustgot
+3. `export TOKEN=thattokenyoujustgot`
 4. Install your SSH key on DO
-5. export DO_SSH_KEY_FINGERPRINT=thatfingerprint
-6. ruby cluster.rb start
-7. (If that doesn't work, run again)
-8. ruby cluster.rb info
-9. ruby cluster.rb ssh1
-10. ruby cluster.rb ssh2
-11. ruby cluster.rb ssh3
-12. ruby cluster.rb shutdown
+5. `export DO_SSH_KEY_FINGERPRINT=thatfingerprint`
+6. `ruby cluster.rb start`
+7. wait for the machines to spin up.
+8. double check that you can connect using `ruby cluster.rb ssh`.  if so, exit.
+9. `ruby cluster.rb start` again to copy over config files
+10. `ruby cluster.rb info`
+11. if that hangs, wait or try `ruby cluster.rb restart`
+12. `ruby cluster.rb ssh1`
+13. `ruby cluster.rb ssh2`
+14. `ruby cluster.rb ssh3`
+15. `ruby cluster.rb shutdown`
+
+## Adding machines to a cluster
+
+1. `export CLUSTER_SIZE=5`
+2. `ruby cluster.rb start`
+3. wait again for things to spin up
+4. `ruby cluster.rb start` to copy over all the necessary files
+5. Possibly restart
+
 
 ## What does it do
 
