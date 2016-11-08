@@ -5,6 +5,7 @@ require 'JSON'
 class Cluster
   def initialize( count = 3 )
     @count = count
+    get_binaries
   end
 
   def info
