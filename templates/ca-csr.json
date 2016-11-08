@@ -1,0 +1,20 @@
+{
+    "CN": "My Fake CA",
+    "hosts": [
+        "happyfuncorp.com",
+        "www.happyfuncorp.com"
+    ],
+    "key": {
+        "algo": "rsa",
+        "size": 2048
+    },
+    "names": [
+        {
+            "C": "US",
+            "L": "NY",
+            "O": "HappyFunCorp",
+            "ST": "Lyons",
+            "OU": "Some Org Unit"
+        }
+    ]
+}
